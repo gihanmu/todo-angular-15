@@ -1,0 +1,14 @@
+<footer class="footer" [ngClass]="{hidden: noTodosClass$ | async}">
+    <span class="todo-count">
+        <strong>{{activeTodosCount$ | async}}</strong>
+        {{activeCountText$ | async}} left
+    </span>
+   
+    <ul class="filters">
+        <li *ngFor="let item of filterEnumValues | keyvalue">
+            <a href="/" [ngClass]="{selected: (filter$ | async) === item.value}" (click)="changeFilter($event, item.value)">
+                {{item.value}}
+            </a>
+        </li>
+    </ul>
+</footer>

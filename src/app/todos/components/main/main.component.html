@@ -1,0 +1,14 @@
+<section class="main" [ngClass]="{ hidden: noTodosClass$ | async }">
+  <input id="toggle-all" class="toggle-all" type="checkbox" [checked]="isAllTodosCompleted$ | async" (change)="updateAllTodos($event)" />
+  <label for="toggle-all">Mark all as complete</label>
+  <ul class="todo-list">
+    
+    <app-todos-todo 
+     *ngFor="let todo of visibleTodos$ | async" [todo]="todo"
+    (setTodoInEditMode)="setTodoInEditModeEvent($event)"
+    (updateTodo)="updateTodoEvent($event)"
+    (removeTodo)="removeTodo($event)"
+    [isEditing]="isEditingId === todo.id"
+    />
+  </ul>
+</section>
